@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const { createRequest } = require('../controllers/requestController');
+const RequestController = require('../controllers/requestController');
 const { protect, restrictTo } = require('../services/authService');
 const handleInputError = require('../utils/handleInputError');
-const CreateRequestModelInput = require('../utils/createRequestValidation');
+const CreateRequestModelInput = require('../utils/validation/createRequestValidation');
+const UpdateRequestModelInput = require('../utils/validation/updateRequestValidation');
 
 router.post(
   '/',
@@ -10,7 +11,16 @@ router.post(
   restrictTo('CLIENT'),
   CreateRequestModelInput,
   handleInputError,
-  createRequest
+  RequestController.createRequest
+);
+
+router.patch(
+  '/:id',
+  protect,
+  restrictTo('CLIENT'),
+  UpdateRequestModelInput,
+  handleInputError,
+  RequestController.updateRequest
 );
 
 module.exports = router;

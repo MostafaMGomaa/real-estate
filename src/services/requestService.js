@@ -15,3 +15,16 @@ const Request = require('../models/requestModel');
 exports.createRequest = async (data) => {
   return await Request.create(data);
 };
+
+/**
+ *
+ * @param {ObjectId} id
+ * @param {*} data
+ * @returns object
+ */
+exports.updateRequest = async (id, data) => {
+  return await Request.findByIdAndUpdate(id, data, {
+    new: true,
+    runValidators: true,
+  });
+};

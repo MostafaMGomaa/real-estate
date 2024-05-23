@@ -37,14 +37,13 @@ app.use((req, res, next) => {
 
 // Test server
 app.get('/healthz', (req, res) => {
-  console.log(req);
   res.status(200).json({
     status: 'success',
   });
 });
 
 app.use('/api/users', userRoutes);
-app.use('/api/request', requestRoutes);
+app.use('/api/requests', requestRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} in server`, 404));
