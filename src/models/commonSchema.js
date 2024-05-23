@@ -31,6 +31,10 @@ const commonSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    userId: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+    },
   },
   {
     toJSON: { virtuals: true },

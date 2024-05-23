@@ -9,6 +9,7 @@ exports.createRequest = asyncHandler(async (req, res, next) => {
     city: req.body.city,
     district: req.body.district,
     description: req.body.description,
+    userId: req.user.id,
   });
 
   res.status(201).send({ data: result });

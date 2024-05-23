@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
-const UpdateRequestModelInput = [
+const UpdateCommonModelInput = [
   body('price')
     .optional()
     .isNumeric()
@@ -24,4 +24,4 @@ const UpdateRequestModelInput = [
   //   },
 ];
 
-module.exports = UpdateRequestModelInput;
+module.exports = UpdateCommonModelInput;

@@ -1,6 +1,6 @@
 const { body, validationResult } = require('express-validator');
 
-const CreateRequestModelInput = [
+const CreateCommonModelInput = [
   body('propertyType')
     .trim()
     .isIn(['VILLA', 'HOUSE', 'LAND', 'APARTMENT'])
@@ -34,4 +34,4 @@ const CreateRequestModelInput = [
   //   },
 ];
 
-module.exports = CreateRequestModelInput;
+module.exports = CreateCommonModelInput;

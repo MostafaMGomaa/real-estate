@@ -1,26 +1,16 @@
 const router = require('express').Router();
-const RequestController = require('../controllers/requestController');
+const AdController = require('../controllers/adController');
 const { protect, restrictTo } = require('../services/authService');
 const handleInputError = require('../utils/handleInputError');
 const CreateCommonModelInput = require('../utils/validation/createCommonValidation');
-const UpdateCommonModelInput = require('../utils/validation/updateCommanValidation');
 
 router.post(
   '/',
   protect,
-  restrictTo('CLIENT'),
+  restrictTo('AGENT'),
   CreateCommonModelInput,
   handleInputError,
-  RequestController.createRequest
-);
-
-router.patch(
-  '/:id',
-  protect,
-  restrictTo('CLIENT'),
-  UpdateCommonModelInput,
-  handleInputError,
-  RequestController.updateRequest
+  AdController.createAd
 );
 
 module.exports = router;
