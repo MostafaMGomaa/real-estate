@@ -9,7 +9,7 @@ exports.getUsersStats = async (page, pageSize) => {
       $lookup: {
         from: 'ads',
         localField: '_id',
-        foreignField: 'user',
+        foreignField: 'userId',
         as: 'ads',
       },
     },
@@ -17,22 +17,20 @@ exports.getUsersStats = async (page, pageSize) => {
       $lookup: {
         from: 'requests',
         localField: '_id',
-        foreignField: 'user',
+        foreignField: 'userId',
         as: 'requests',
       },
     },
-    {
-      $addFields: {
-        totalAds: { $size: '$ads' },
-        totalRequests: { $size: '$requests' },
-      },
-    },
+
     {
       $project: {
+        _id: 1,
         name: 1,
         role: 1,
-        totalAds: 1,
-        totalRequests: 1,
+        adsCount: { $size: '$ads' },
+        totalAdsAmount: { $sum: '$ads.price' },
+        requestsCount: { $size: '$requests' },
+        totalRequestsAmount: { $sum: '$requests.price' },
       },
     },
     {
@@ -47,5 +45,6 @@ exports.getUsersStats = async (page, pageSize) => {
   ];
 
   const usersStatistics = await User.aggregate(pipeline);
+
   return usersStatistics;
 };

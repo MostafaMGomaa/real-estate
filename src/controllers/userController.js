@@ -11,11 +11,15 @@ exports.getUserStatistics = asyncHandler(async (req, res, next) => {
   }
 
   const total = usersStatistics[0].metadata[0]?.total || 0;
+  const hasNextPage = page * pageSize < total;
+  const hasPreviousPage = page > 1;
 
   res.status(200).json({
     data: usersStatistics[0].data,
     total,
     page: parseInt(page),
     pageSize: parseInt(pageSize),
+    hasNextPage,
+    hasPreviousPage,
   });
 });

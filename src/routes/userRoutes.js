@@ -8,6 +8,6 @@ router.post('/signup', signup);
 router.post('/login', login);
 router.get('/logout', logout);
 
-router.get('stats', protect, restrictTo('ADMIN'), getUserStatistics);
+router.get('/statistics', protect, restrictTo('ADMIN'), getUserStatistics);
 
 module.exports = router;

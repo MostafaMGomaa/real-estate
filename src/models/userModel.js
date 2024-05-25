@@ -67,13 +67,13 @@ userSchema.methods.correctPassword = async (
 
 userSchema.virtual('ads', {
   ref: 'Ad',
-  foreignField: 'user',
+  foreignField: 'userId', // Ensure this matches the field in Request model
   localField: '_id',
 });
 
 userSchema.virtual('requests', {
   ref: 'Request',
-  foreignField: 'user',
+  foreignField: 'userId', // Ensure this matches the field in Ad model
   localField: '_id',
 });
 
