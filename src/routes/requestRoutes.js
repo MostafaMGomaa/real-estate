@@ -8,7 +8,7 @@ const UpdateCommonModelInput = require('../utils/validation/updateCommanValidati
 router.post(
   '/',
   protect,
-  restrictTo('CLIENT'),
+  restrictTo('CLIENT', 'ADMIN'),
   CreateCommonModelInput,
   handleInputError,
   RequestController.createRequest
@@ -17,7 +17,7 @@ router.post(
 router.patch(
   '/:id',
   protect,
-  restrictTo('CLIENT'),
+  restrictTo('CLIENT', 'ADMIN'),
   UpdateCommonModelInput,
   handleInputError,
   RequestController.updateRequest

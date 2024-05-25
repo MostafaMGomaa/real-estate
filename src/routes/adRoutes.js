@@ -7,13 +7,18 @@ const CreateCommonModelInput = require('../utils/validation/createCommonValidati
 router.post(
   '/',
   protect,
-  restrictTo('AGENT'),
+  restrictTo('AGENT', 'ADMIN'),
   CreateCommonModelInput,
   handleInputError,
   AdController.createAd
 );
 
 // Endpoint to match property requests with an ad
-router.get('/:id/matches', protect, restrictTo('AGENT'), AdController.matchAds);
+router.get(
+  '/:id/matches',
+  protect,
+  restrictTo('AGENT', 'ADMIN'),
+  AdController.matchAds
+);
 
 module.exports = router;
