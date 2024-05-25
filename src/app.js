@@ -10,6 +10,7 @@ const dataSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/userRoutes');
 const requestRoutes = require('./routes/requestRoutes');
 const adRoutes = require('./routes/adRoutes');
+const fakeRoutes = require('./routes/fakeRoutes');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -47,6 +48,7 @@ app.get('/healthz', (req, res) => {
 app.use('/api/users', userRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/ads', adRoutes);
+app.use('/api/backup', fakeRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} in server`, 404));

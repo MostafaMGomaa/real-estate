@@ -1,0 +1,551 @@
+openapi: 3.0.3
+info:
+  title: User API
+  description: API for user operations
+  version: 1.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/MostafaGomaa/test/1.0.0
+  - url: http://localhost:3000
+paths:
+  /api/users/signup:
+    post:
+      summary: User Signup
+      description: Create a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: CLIENT
+                phone:
+                  type: string
+                  example: +201220528752
+                password:
+                  type: string
+                  example: 'password'
+                role:
+                  type: string
+                  example: CLIENT
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  phone:
+                    type: string
+                  role:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/users/login:
+    post:
+      summary: User Login
+      description: Login a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  example: +201220528753
+                password:
+                  type: string
+                  example: '{{pass}}'
+      responses:
+        '200':
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized access
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/requests:
+    post:
+      summary: Create a Request
+      description: Create a new request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                propertyType:
+                  type: string
+                  enum:
+                    - VILLA
+                    - HOUSE
+                    - LAND
+                    - APARTMENT
+                area:
+                  type: string
+                  example: masken
+                price:
+                  type: number
+                  example: 490
+                city:
+                  type: string
+                  example: alex
+                district:
+                  type: string
+                  example: jldsnalndsoandosa
+                description:
+                  type: string
+                  example: dsaklmdksamdksanm
+      responses:
+        '201':
+          description: Request created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  propertyType:
+                    type: string
+                  area:
+                    type: string
+                  price:
+                    type: number
+                  city:
+                    type: string
+                  district:
+                    type: string
+                  description:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized access
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/ads:
+    post:
+      summary: Create an Ad
+      description: Create a new advertisement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                propertyType:
+                  type: string
+                  enum:
+                    - VILLA
+                    - HOUSE
+                    - LAND
+                    - APARTMENT
+                  example: HOUSE
+                area:
+                  type: string
+                  example: masken
+                price:
+                  type: number
+                  example: 500
+                city:
+                  type: string
+                  example: alex
+                district:
+                  type: string
+                  example: jldsnalndsoandosa
+                description:
+                  type: string
+                  example: dsaklmdksamdksanm
+      responses:
+        '201':
+          description: Ad created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  propertyType:
+                    type: string
+                  area:
+                    type: string
+                  price:
+                    type: number
+                  city:
+                    type: string
+                  district:
+                    type: string
+                  description:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized access
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/requests/{id}:
+    patch:
+      summary: Update a Request
+      description: Update an existing request
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the request to update
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                area:
+                  type: string
+                  example: masken
+                price:
+                  type: number
+                  example: 200
+                description:
+                  type: string
+                  example: dsaklmdksamdksanm
+      responses:
+        '200':
+          description: Request updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  propertyType:
+                    type: string
+                  area:
+                    type: string
+                  price:
+                    type: number
+                  city:
+                    type: string
+                  district:
+                    type: string
+                  description:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized access
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Request not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/ads/{id}/matches:
+    get:
+      summary: Get Matched Requests for an Ad
+      description: Retrieve matched requests for a specific ad
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the ad to retrieve matched requests for
+        - name: page
+          in: query
+          schema:
+            type: integer
+            example: 3
+          description: The page number of the matched requests (optional)
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            example: 1
+          description: The number of matched requests per page (optional)
+      responses:
+        '200':
+          description: Successfully retrieved matched requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        propertyType:
+                          type: string
+                        area:
+                          type: string
+                        price:
+                          type: number
+                        city:
+                          type: string
+                        district:
+                          type: string
+                        description:
+                          type: string
+                        total:
+                          type: number
+                        page:
+                          type: string
+                        pageSize:
+                          type: string
+                        hasNextPage:
+                          type: string
+                        hasPreviousPage:
+                          type: string
+
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ad not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+  /api/users/statistics:
+    get:
+      summary: Get User Statistics
+      description: Retrieve statistics for users
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            example: 1
+          description: The page number (optional)
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            example: 1
+          description: The number of users per page (optional)
+      responses:
+        '200':
+          description: Successfully retrieved user statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        role:
+                          type: string
+                        adsCount:
+                          type: integer
+                        totalAdsAmount:
+                          type: number
+                        requestsCount:
+                          type: integer
+                        totalRequestsAmount:
+                          type: number
+                        # Other user data properties here...
+                    example:
+                      - name: John Doe
+                        role: Client
+                        adsCount: 5
+                        totalAdsAmount: 10000
+                        requestsCount: 10
+                        totalRequestsAmount: 23600
+                  page:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  hasNextPage:
+                    type: boolean
+                  hasPreviousPage:
+                    type: boolean
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid input data
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
