@@ -41,7 +41,7 @@ ODM: Mongoose
 
 ## API Documentation
 
-The **SWAGGER** API documentation can be found [here](- https://app.swaggerhub.com/apis/MostafaGomaa/real-estate/1.0.0).
+The **SWAGGER** API documentation can be found [here](https://app.swaggerhub.com/apis/MostafaGomaa/real-estate/1.0.0).
 
 ## Running Tests
 
