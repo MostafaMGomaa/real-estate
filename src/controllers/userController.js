@@ -6,10 +6,6 @@ exports.getUserStatistics = asyncHandler(async (req, res, next) => {
 
   const usersStatistics = await getUsersStats(page, pageSize);
 
-  if (usersStatistics.length === 0) {
-    return res.status(404).json({ message: 'No users found' });
-  }
-
   const total = usersStatistics[0].metadata[0]?.total || 0;
   const hasNextPage = page * pageSize < total;
   const hasPreviousPage = page > 1;
