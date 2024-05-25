@@ -30,7 +30,7 @@ ODM: Mongoose
 
 - Clone the repository
 - Run `npm install`
-- Create a `.env` file in the root directory and add the following variables:
+- Update the`.env` file in the root directory and add the following variables:
   - `PORT`: The port number the server will run on
   - `DATABASE`: The URI of the Dev MongoDB database
   - `DATABASE_TEST`: The URI of the Test MongoDB database
