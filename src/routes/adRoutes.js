@@ -13,4 +13,12 @@ router.post(
   AdController.createAd
 );
 
+// Endpoint to match property requests with an ad
+router.get(
+  '/ads/:id/matches',
+  authenticate,
+  authorize('CLIENT'),
+  AdController.matchAds
+);
+
 module.exports = router;

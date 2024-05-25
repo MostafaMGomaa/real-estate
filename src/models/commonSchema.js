@@ -42,4 +42,6 @@ const commonSchema = new mongoose.Schema(
   }
 );
 
+commonSchema.index({ district: 1, area: 1, price: 1, refreshedAt: -1 });
+
 module.exports = commonSchema;
