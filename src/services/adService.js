@@ -27,7 +27,9 @@ exports.createAd = async (data) => {
   Include a price tolerance of +/- 10% in the matching system.
   example: if ad price is 100 then requests with price 90 to 110 will be matched
   Include pagination in the response using MongoDB aggregation with a single database call.
+    - $ acet
   Ensure that the matching logic is efficient and can handle a large number of requests and ads (performance considerations)
+    - Index and projections
  */
 
 exports.findMatchesAds = async (ad, page, pageSize) => {
