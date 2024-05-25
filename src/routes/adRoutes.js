@@ -14,11 +14,6 @@ router.post(
 );
 
 // Endpoint to match property requests with an ad
-router.get(
-  '/ads/:id/matches',
-  authenticate,
-  authorize('CLIENT'),
-  AdController.matchAds
-);
+router.get('/:id/matches', protect, restrictTo('AGENT'), AdController.matchAds);
 
 module.exports = router;
