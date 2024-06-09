@@ -9,21 +9,30 @@ services:
       - '3000:3000'
     depends_on:
       - mongo
+    networks:
+      - my_network
 
   mongo:
     image: mongo
     ports:
-      - '27017:27017'
+      - '27018:27017'
     volumes:
       - mongo-data:/data/db
+    networks:
+      - my_network
 
   mongo-test:
     image: mongo
     ports:
-      - '27018:27017'
+      - '27019:27017'
     volumes:
       - mongo-test-data:/data/db
+    networks:
+      - my_network
 
 volumes:
   mongo-data:
   mongo-test-data:
+
+networks:
+  my_network:
